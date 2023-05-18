@@ -1,0 +1,9 @@
+# 列举了一些Context的用法
+
+example1说明父协程退出时子协程不会退出
+
+example2展示了使用WithCancel方法来控制子协程退出
+
+example3展示了context用于传递信息的写法
+
+example4展示了WithTimeout和WithDeadline来控制协程生命周期
