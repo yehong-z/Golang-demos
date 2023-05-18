@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option go_package = "grpc-demo/protoc/test.proto";
+
+package protoc;
+
+
+
+service Hello {
+  rpc BasicRPC(Request) returns (Reply) {}
+
+  rpc Many(Requests) returns (BatchReply) {}
+
+  rpc StreamInput(stream Request) returns (Reply) {}
+
+  rpc StreamOutput(Request) returns (stream Reply) {}
+}
+
+
+message Requests {
+  repeated Request request = 1;
+}
+
+message BatchReply {
+  repeated Reply reply = 1;
+}
+
+message Request {
+  string name = 1;
+}
+
+
+message Reply {
+  string msg = 1;
+}
+
