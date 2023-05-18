@@ -1,0 +1,13 @@
+mysql:
+  host: "10.20.121.369"
+  port: 3306
+  database: "demo"
+  username: "****"
+  password: "******"
+  charset: "utf8mb4"
+  parse_time: true
+  loc: "Local"
+
+server:
+  ip: 0.0.0.0
+  port: 8080
