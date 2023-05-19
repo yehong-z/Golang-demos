@@ -1,9 +1,9 @@
 mysql:
-  host: "10.20.121.369"
+  host: "10.20.121.247"
   port: 3306
   database: "demo"
-  username: "****"
-  password: "******"
+  username: "zyh"
+  password: "zyh130452"
   charset: "utf8mb4"
   parse_time: true
   loc: "Local"

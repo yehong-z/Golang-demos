@@ -1,9 +1,9 @@
 package user_login
 
 import (
-	"demo/middleware"
-	"demo/models"
 	"errors"
+	"gin-gorm-demo/middleware"
+	"gin-gorm-demo/models"
 )
 
 const (

@@ -1,10 +1,10 @@
 package user_login
 
 import (
-	"demo/middleware"
-	"demo/models"
 	"errors"
 	"fmt"
+	"gin-gorm-demo/middleware"
+	"gin-gorm-demo/models"
 )
 
 // PostUserLogin 注册用户并得到token和id

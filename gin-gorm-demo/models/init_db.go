@@ -1,7 +1,7 @@
 package models
 
 import (
-	"demo/config"
+	"gin-gorm-demo/config"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )

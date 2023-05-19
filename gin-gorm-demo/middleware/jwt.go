@@ -1,7 +1,7 @@
 package middleware
 
 import (
-	"demo/models"
+	"gin-gorm-demo/models"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"net/http"

@@ -1,8 +1,8 @@
 package user_login
 
 import (
-	"demo/models"
-	"demo/service/user_login"
+	"gin-gorm-demo/models"
+	"gin-gorm-demo/service/user_login"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )

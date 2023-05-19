@@ -1,9 +1,9 @@
 package router
 
 import (
-	"demo/handlers/user_login"
-	"demo/middleware"
-	"demo/models"
+	"gin-gorm-demo/handlers/user_login"
+	"gin-gorm-demo/middleware"
+	"gin-gorm-demo/models"
 	"github.com/gin-gonic/gin"
 )
 
