@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"testing"
+	"time"
 )
 
 func TestLog(t *testing.T) {
@@ -23,5 +24,9 @@ func TestLog(t *testing.T) {
 		kafkaWriter}
 	multiWriter := io.MultiWriter(writers...)
 	InitLogger(multiWriter)
-	Logger.Info("test log")
+	for i := 0; i < 1000; i++ {
+		Logger.Info("test log", time.Now())
+		time.Sleep(time.Millisecond * 100)
+	}
+
 }
