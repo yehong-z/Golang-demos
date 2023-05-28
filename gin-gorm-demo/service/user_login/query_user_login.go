@@ -2,6 +2,7 @@ package user_login
 
 import (
 	"errors"
+
 	"gin-gorm-demo/middleware"
 	"gin-gorm-demo/models"
 )
@@ -71,7 +72,7 @@ func (q *QueryUserLoginFlow) prepareData() error {
 	}
 
 	q.userid = int64(login.ID)
-	//准备颁发token
+	// 准备颁发token
 	token, err := middleware.ReleaseToken(login)
 	if err != nil {
 		return err

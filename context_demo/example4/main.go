@@ -16,7 +16,6 @@ func Child(ctx context.Context) error {
 	case <-time.After(time.Second * 2):
 		return nil
 	}
-
 }
 
 func ParentWithTimeout() {
@@ -29,12 +28,31 @@ func ParentWithTimeout() {
 func ParentWithDeadline() {
 	ctx, cancel := context.WithDeadline(context.Background(), time.Now().Add(time.Second))
 	defer cancel()
-
 	fmt.Println(fmt.Errorf("%w", Child(ctx)))
 }
 
+func Request() {
+	ctx, cancel := context.WithTimeout(context.Background(), time.Second*2)
+	defer cancel()
+	ch := make(chan error)
+	go worker(ch)
+
+	select {
+	case <-ch:
+		fmt.Println("ok")
+	case <-ctx.Done():
+		fmt.Println("timeout")
+	}
+}
+
+func worker(ch chan error) {
+	time.Sleep(time.Second)
+	ch <- nil
+}
+
 func main() {
-	ParentWithTimeout()
-	fmt.Println("-------------")
-	ParentWithDeadline()
+	Request()
+	// ParentWithTimeout()
+	// fmt.Println("-------------")
+	// ParentWithDeadline()
 }

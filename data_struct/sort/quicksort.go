@@ -3,6 +3,7 @@ package sort
 func QuickSort(array []int) {
 	quicksort(array, 0, len(array)-1)
 }
+
 func quicksort(array []int, l, r int) {
 	if l >= r {
 		return

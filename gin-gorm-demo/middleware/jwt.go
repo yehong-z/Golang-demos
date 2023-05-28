@@ -1,11 +1,12 @@
 package middleware
 
 import (
+	"net/http"
+	"time"
+
 	"gin-gorm-demo/models"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
-	"net/http"
-	"time"
 )
 
 var jwtKey = []byte("syn_syn_ack_ack")
@@ -58,29 +59,29 @@ func JWTMiddleWare() gin.HandlerFunc {
 		if tokenStr == "" {
 			tokenStr = c.PostForm("token")
 		}
-		//用户不存在
+		// 用户不存在
 		if tokenStr == "" {
 			c.JSON(http.StatusOK, models.CommonResponse{StatusCode: 401, StatusMsg: "用户不存在"})
-			c.Abort() //阻止执行
+			c.Abort() // 阻止执行
 			return
 		}
-		//验证token
+		// 验证token
 		tokenStruck, ok := ParseToken(tokenStr)
 		if !ok {
 			c.JSON(http.StatusOK, models.CommonResponse{
 				StatusCode: 403,
 				StatusMsg:  "token不正确",
 			})
-			c.Abort() //阻止执行
+			c.Abort() // 阻止执行
 			return
 		}
-		//token超时
+		// token超时
 		if time.Now().Unix() > tokenStruck.ExpiresAt {
 			c.JSON(http.StatusOK, models.CommonResponse{
 				StatusCode: 402,
 				StatusMsg:  "token过期",
 			})
-			c.Abort() //阻止执行
+			c.Abort() // 阻止执行
 			return
 		}
 		c.Set("user_id", tokenStruck.UserId)

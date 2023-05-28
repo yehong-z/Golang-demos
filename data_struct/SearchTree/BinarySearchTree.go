@@ -19,10 +19,9 @@ func NewBinaryTree() *BinaryTree {
 }
 
 func (T *BinaryTree) Search(val int) bool {
-	//T.InorderTreeWalk(T.root)
-	//fmt.Println()
+	// T.InorderTreeWalk(T.root)
+	// fmt.Println()
 	if node := T.SearchNode(T.root, val); node != nil {
-
 		return true
 	} else {
 		return false

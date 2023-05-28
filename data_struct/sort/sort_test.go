@@ -22,7 +22,7 @@ func TestSort(t *testing.T) {
 
 	cases := []func([]int){
 		sort.Ints,
-		//InsertSort,
+		// InsertSort,
 		QuickSort,
 		HeapSort,
 	}

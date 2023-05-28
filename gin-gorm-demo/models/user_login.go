@@ -2,8 +2,9 @@ package models
 
 import (
 	"errors"
-	"gorm.io/gorm"
 	"sync"
+
+	"gorm.io/gorm"
 )
 
 type UserLogin struct {
@@ -12,11 +13,12 @@ type UserLogin struct {
 	Password string
 }
 
-type UserLoginDAO struct {
-}
+type UserLoginDAO struct{}
 
-var userLoginDao *UserLoginDAO
-var userLoginOnce sync.Once
+var (
+	userLoginDao  *UserLoginDAO
+	userLoginOnce sync.Once
+)
 
 func NewUserLoginDao() *UserLoginDAO {
 	userLoginOnce.Do(func() {

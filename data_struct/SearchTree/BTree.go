@@ -66,7 +66,7 @@ func (T *BTree) SplitChild(x *BTreeNode, i int) {
 		x.keys[j] = x.keys[j-1]
 	}
 	x.keys[i] = y.keys[T.t]
-	//将y中一半的key结点移动到z
+	// 将y中一半的key结点移动到z
 	for j := T.t + 1; j < len(y.keys); j++ {
 		z.keys = append(z.keys, y.keys[j])
 	}

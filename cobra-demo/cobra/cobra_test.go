@@ -2,12 +2,13 @@ package cobra
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"testing"
+
+	"github.com/spf13/cobra"
 )
 
 func TestCobra(t *testing.T) {
-	var cmdHello = &cobra.Command{
+	cmdHello := &cobra.Command{
 		Use:   "hello [name]",
 		Short: "Say hello to someone",
 		Long:  "This command will greet the person you provide by name.",
@@ -17,7 +18,7 @@ func TestCobra(t *testing.T) {
 		},
 	}
 
-	var rootCmd = &cobra.Command{Use: "app"}
+	rootCmd := &cobra.Command{Use: "app"}
 	rootCmd.AddCommand(cmdHello)
 	rootCmd.Execute()
 }

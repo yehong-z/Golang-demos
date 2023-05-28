@@ -2,11 +2,12 @@ package config_demo
 
 import (
 	"fmt"
+	"io/ioutil"
+	"path"
+
 	"github.com/BurntSushi/toml"
 	"golang.org/x/text/encoding/unicode"
 	"golang.org/x/text/transform"
-	"io/ioutil"
-	"path"
 )
 
 type Config struct {

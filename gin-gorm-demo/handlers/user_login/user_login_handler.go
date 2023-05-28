@@ -1,10 +1,11 @@
 package user_login
 
 import (
+	"net/http"
+
 	"gin-gorm-demo/models"
 	"gin-gorm-demo/service/user_login"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 type UserLoginResponse struct {
@@ -25,7 +26,7 @@ func UserLoginHandler(c *gin.Context) {
 		})
 	}
 	userLoginResponse, err := user_login.QueryUserLogin(username, password)
-	//用户不存在返回对应的错误
+	// 用户不存在返回对应的错误
 	if err != nil {
 		c.JSON(http.StatusOK, UserLoginResponse{
 			CommonResponse: models.CommonResponse{StatusCode: 1, StatusMsg: err.Error()},
@@ -33,7 +34,7 @@ func UserLoginHandler(c *gin.Context) {
 		return
 	}
 
-	//用户存在，返回相应的id和token
+	// 用户存在，返回相应的id和token
 	c.JSON(http.StatusOK, UserLoginResponse{
 		CommonResponse: models.CommonResponse{StatusCode: 0},
 		LoginResponse:  userLoginResponse,

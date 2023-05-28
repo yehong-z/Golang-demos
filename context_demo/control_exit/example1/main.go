@@ -1,9 +1,10 @@
 package main
 
 import (
-	"context_demo/util"
 	"fmt"
 	"time"
+
+	"context_demo/util"
 )
 
 func Parent() {
@@ -12,7 +13,7 @@ func Parent() {
 }
 
 func Child() {
-	defer fmt.Println("Parent exit")
+	defer fmt.Println("Child exit")
 	for {
 		time.Sleep(time.Second)
 		fmt.Println("child")

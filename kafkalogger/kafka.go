@@ -2,6 +2,7 @@ package kafkalogger
 
 import (
 	"fmt"
+
 	"github.com/Shopify/sarama"
 )
 
@@ -24,7 +25,8 @@ func NewKafkaWriter(brokers []string, topic string) (*KafkaWriter, error) {
 
 	return &KafkaWriter{
 		p:     producer,
-		topic: topic}, nil
+		topic: topic,
+	}, nil
 }
 
 // 实现 io.Writer 接口

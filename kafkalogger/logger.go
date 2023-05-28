@@ -1,8 +1,9 @@
 package kafkalogger
 
 import (
-	"github.com/sirupsen/logrus"
 	"io"
+
+	"github.com/sirupsen/logrus"
 )
 
 var Logger *logrus.Logger
@@ -14,5 +15,4 @@ func InitLogger(w io.Writer) {
 	Logger.SetReportCaller(true)
 	Logger.SetLevel(logrus.DebugLevel)
 	Logger.SetOutput(w)
-
 }

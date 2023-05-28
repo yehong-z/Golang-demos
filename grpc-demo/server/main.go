@@ -3,10 +3,11 @@ package main
 import (
 	"context"
 	"fmt"
-	"google.golang.org/grpc"
-	pb "grpc-demo/protoc"
 	"log"
 	"net"
+
+	"google.golang.org/grpc"
+	pb "grpc-demo/protoc"
 )
 
 type HelloServer struct {

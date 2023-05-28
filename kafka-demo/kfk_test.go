@@ -8,7 +8,7 @@ import (
 )
 
 func TestSendAndGetMsg(t *testing.T) {
-	//SendMsg()
+	// SendMsg()
 	GetMsg()
 }
 
@@ -55,5 +55,4 @@ func TestCreateTopic(t *testing.T) {
 	}
 
 	fmt.Println("Create Kafka topic success")
-
 }

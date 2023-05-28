@@ -1,8 +1,9 @@
 package main
 
 import (
-	"gin-gorm-demo/server"
 	_ "net/http/pprof"
+
+	"gin-gorm-demo/server"
 )
 
 func main() {

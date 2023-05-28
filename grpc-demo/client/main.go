@@ -2,11 +2,12 @@ package main
 
 import (
 	"context"
+	"log"
+	"time"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	pb "grpc-demo/protoc"
-	"log"
-	"time"
 )
 
 func BasicRCP(c pb.HelloClient) {
@@ -40,10 +41,10 @@ func main() {
 	}
 	defer conn.Close()
 	c := pb.NewHelloClient(conn)
-	//BasicRCP(c)
+	// BasicRCP(c)
 	Many(c)
-	//StreamInput(c)
-	//StreamOutput(c)
+	// StreamInput(c)
+	// StreamOutput(c)
 }
 
 //func StreamInput(c pb.HelloClient) {

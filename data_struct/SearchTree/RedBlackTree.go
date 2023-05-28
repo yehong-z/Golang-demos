@@ -212,7 +212,7 @@ func (T *RedBlackTree) RBDelete(z *RBNode) {
 		x = z.left
 		T.transplant(z, z.left)
 	} else {
-		//情况3：有两个孩子，找到后继，用后继的右孩子替换后继，并用后继替换y
+		// 情况3：有两个孩子，找到后继，用后继的右孩子替换后继，并用后继替换y
 		y = T.Min(z.right)
 		yOriginColor = y.color
 		x = y.right

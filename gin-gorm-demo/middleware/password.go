@@ -3,6 +3,7 @@ package middleware
 import (
 	"crypto/sha1"
 	"encoding/hex"
+
 	"github.com/gin-gonic/gin"
 )
 

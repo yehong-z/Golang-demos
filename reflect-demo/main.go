@@ -27,5 +27,4 @@ func main() {
 	// 判断变量是否为 Nil
 	var z *int = nil
 	fmt.Println(reflect.ValueOf(z).IsNil()) // 输出: true
-
 }

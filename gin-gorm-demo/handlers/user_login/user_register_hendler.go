@@ -1,10 +1,11 @@
 package user_login
 
 import (
+	"net/http"
+
 	"gin-gorm-demo/models"
 	"gin-gorm-demo/service/user_login"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 type UserRegisterResponse struct {
@@ -25,7 +26,6 @@ func UserRegisterHandler(c *gin.Context) {
 		})
 	}
 	registerResponse, err := user_login.PostUserLogin(username, password)
-
 	if err != nil {
 		c.JSON(http.StatusOK, UserRegisterResponse{
 			CommonResponse: models.CommonResponse{

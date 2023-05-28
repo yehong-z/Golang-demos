@@ -1,8 +1,9 @@
 package models
 
 import (
-	"golang.org/x/sync/singleflight"
 	"testing"
+
+	"golang.org/x/sync/singleflight"
 )
 
 func init() {

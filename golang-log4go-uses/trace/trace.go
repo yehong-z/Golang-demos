@@ -3,8 +3,9 @@ package trace
 import (
 	"errors"
 	"fmt"
-	log "github.com/jeanphorn/log4go"
 	"runtime/debug"
+
+	log "github.com/jeanphorn/log4go"
 )
 
 func A() error {

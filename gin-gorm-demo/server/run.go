@@ -2,12 +2,13 @@ package server
 
 import (
 	"fmt"
-	"gin-gorm-demo/config"
-	"gin-gorm-demo/router"
 	"log"
 	"net/http"
 	"os"
 	"runtime"
+
+	"gin-gorm-demo/config"
+	"gin-gorm-demo/router"
 )
 
 func Run() {
