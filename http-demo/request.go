@@ -9,16 +9,18 @@ import (
 
 func Get() {
 	// 设置 InfluxDB 的地址和端口
-	influxdbURL := "https://10.20.121.247:8086"
+	influxdbURL := "http://10.20.121.247:8086"
 
 	// 设置查询参数
 	values := url.Values{}
-	values.Set("u", "admin")
-	values.Set("p", "!Zyh123456")
-	values.Set("q", "SHOW DATABASES")
 
+	values.Set("q", "SHOW DATABASES")
+	username := "admin"
+	password := "!Zyh123456"
 	// 构造 GET 请求
 	req, err := http.NewRequest("GET", influxdbURL+"/query?"+values.Encode(), nil)
+	req.SetBasicAuth(username, password)
+
 	if err != nil {
 		fmt.Println("创建请求失败：", err)
 		return
