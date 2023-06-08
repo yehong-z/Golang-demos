@@ -9,7 +9,7 @@ import (
 )
 
 func TestLog(t *testing.T) {
-	brokers := []string{"10.20.121.247:9092"}
+	brokers := []string{"121.36.89.81:9092"}
 	kafkaWriter, err := NewKafkaWriter(brokers, "log")
 	if err != nil {
 		log.Fatalf("failed to create kafka writer: %v", err)

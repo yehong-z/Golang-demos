@@ -20,6 +20,7 @@ func NewKafkaWriter(brokers []string, topic string) (*KafkaWriter, error) {
 	// 连接 Kafka 集群
 	producer, err := sarama.NewSyncProducer(brokers, config)
 	if err != nil {
+		fmt.Println("-----------------------------------")
 		panic(err)
 	}
 

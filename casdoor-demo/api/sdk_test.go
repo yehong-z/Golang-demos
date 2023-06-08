@@ -32,3 +32,12 @@ func TestGetToken(t *testing.T) {
 
 	fmt.Println(Jwt.ExpiresAt)
 }
+
+func TestEnforce(t *testing.T) {
+	Init()
+	enforce, err := auth.Enforce(&auth.PermissionRule{})
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	fmt.Println(enforce)
+}
