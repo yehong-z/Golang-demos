@@ -2,23 +2,31 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
-func equalPairs(grid [][]int) int {
-	n := len(grid)
-	cnt := make(map[string]int)
-	for _, row := range grid {
-		cnt[fmt.Sprintf("%v", row)]++
-	}
-	res := 0
-	for j := 0; j < n; j++ {
-		arr := make([]int, n)
-		for i := 0; i < n; i++ {
-			arr[i] = grid[i][j]
+func maximumTastiness(price []int, k int) int {
+	sort.Ints(price)
+	l := 0
+	r := int(1e9 + 10)
+	var mid int
+	for l < r {
+		mid = (l + r) / 2
+		a := price[0]
+		cnt := 0
+		for i := 1; i < len(price); i++ {
+			if price[i]-a >= mid {
+				cnt++
+				a = price[i]
+			}
 		}
-		res += cnt[fmt.Sprintf("%v", arr)]
+		if cnt >= k {
+			r = mid
+		} else {
+			l = mid + 1
+		}
 	}
-	return res
+	return l
 }
 
 func main() {
