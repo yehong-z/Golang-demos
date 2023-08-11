@@ -1,51 +1,78 @@
 package logger
 
 import (
-	"github.com/sirupsen/logrus"
+	"fmt"
+	"io"
 	"os"
 	"runtime"
+
+	"github.com/sirupsen/logrus"
 )
 
-var logger *logrus.Logger
+//var Provider = wire.NewSet(NewMyLogger, wire.Bind(new(Logger), new(*MyLogger)))
 
-func init() {
-	logger = logrus.New()
+// LEVEL 日志级别，后面应写进配置文件
+const LEVEL = logrus.DebugLevel
 
+type Logger interface {
+	Info(args ...any)
+	InfoF(format string, args ...any)
+	Error(args ...any)
+	ErrorF(format string, args ...any)
+	Warn(args ...any)
+	WarnF(format string, args ...any)
 }
 
-func Info() {
-	logger := logrus.New()
-	_, file, _, _ := runtime.Caller(1)
-	println(file)
-	entry := logger.WithField("file", file)
-	entry.Infoln("aaa")
+type MyLogger struct {
+	entry *logrus.Entry
 }
 
-func NewLogger() *logrus.Logger {
-	// 创建新的 logger
+func (l *MyLogger) addCaller() *logrus.Entry {
+	_, file, line, _ := runtime.Caller(2)
+	return l.entry.WithField("file", fmt.Sprintf("%v:%v\n", file, line))
+}
+
+func (l *MyLogger) Info(args ...any) {
+	l.addCaller().Info(args)
+}
+
+func (l *MyLogger) InfoF(format string, args ...any) {
+	l.addCaller().Infof(format, args)
+}
+
+func (l *MyLogger) Error(args ...any) {
+	l.addCaller().Error(args)
+}
+
+func (l *MyLogger) ErrorF(format string, args ...any) {
+	l.addCaller().Errorf(format, args)
+}
+
+func (l *MyLogger) Warn(args ...any) {
+	l.addCaller().Warn(args)
+}
+
+func (l *MyLogger) WarnF(format string, args ...any) {
+	l.addCaller().Warn(format, args)
+}
+
+func NewMyLogger() *MyLogger {
 	logger := logrus.New()
-	// 设置日志格式为 JSON 格式
+	// JSON 格式
 	logger.SetFormatter(&logrus.JSONFormatter{})
-	// 记录时间戳
-	logger.SetReportCaller(true)
 	// 设置日志级别
-	logger.SetLevel(logrus.DebugLevel)
-	// 输出到标准输出流
-	logger.SetOutput(os.Stdout)
-	// 对每个 logger 的日志添加请求信息、错误类型、错误代码、堆栈追踪等字段
+	logger.SetLevel(LEVEL)
 
-	return logger
-}
+	// 创建第一个日志文件
+	outputFile, err := os.OpenFile("./service_log.txt", os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+	if err != nil {
+		logger.Fatal(err)
+	}
 
-// NewMiddlewareLogger
-// JSON 格式
-// 记录时间戳,
-// 设置日志级别,
-// 输出到标准输出流
-func NewMiddlewareLogger() *logrus.Logger {
-	logger := logrus.New()
-	logger.SetFormatter(&logrus.JSONFormatter{})
-	logger.SetLevel(logrus.DebugLevel)
-	logger.SetOutput(os.Stdout)
-	return logger
+	//multiWriter := io.MultiWriter(os.Stdout, rabbitMQWriter)
+	// 输出到标准输出流和消息队列
+	multiWriter := io.MultiWriter(os.Stdout, outputFile)
+	logger.SetOutput(multiWriter)
+	entry := logger.WithField("category", "my log")
+	return &MyLogger{entry: entry}
 }
